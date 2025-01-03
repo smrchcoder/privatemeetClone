@@ -7,7 +7,9 @@ const app = express();
 
 const PORT = process.env.PORT;
 //extract json data from body , acts as a middle ware
+// Add this middleware to parse JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRouter);
 
 app.listen(PORT, () => {
