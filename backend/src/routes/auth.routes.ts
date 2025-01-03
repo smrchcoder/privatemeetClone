@@ -1,5 +1,11 @@
 import express, { Router } from "express";
-import { signup, login, logout } from "../controllers/auth.controller";
+import {
+  signup,
+  login,
+  logout,
+  updateProfilePic,
+} from "../controllers/auth.controller";
+import protectRoute from "../middlewares/auth.middleware";
 
 const authRouter: Router = express.Router();
 
@@ -13,5 +19,7 @@ authRouter.post("/login", login);
 //Define the logout route
 
 authRouter.post("/logout", logout);
+
+authRouter.put("/update-profile", protectRoute, updateProfilePic);
 
 export default authRouter;
